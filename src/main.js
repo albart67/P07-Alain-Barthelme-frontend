@@ -5,6 +5,7 @@ import 'bootstrap';
 import './assets/app.scss'
 
 
+
 Vue.config.productionTip = false
 
 new Vue({

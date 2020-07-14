@@ -9,7 +9,7 @@
 
 <script>
 import Message from "../components/Message";
-import MessageService from "../service/messages.service";
+//import MessageService from "../service/messages.service";
 
 export default {
   data() {
@@ -17,13 +17,13 @@ export default {
       messages: []
     };
   },
-  components: { Message },
-  mounted() {
-    MessageService.getMessages.then(messages => {
-      this.messages = messages;
-      console.log(this.messages);
-    });
-  }
+  components: { Message }
+  // mounted() {
+  //   MessageService.getMessages.then(messages => {
+  //     this.messages = messages;
+  //     console.log(this.messages);
+  //   });
+  // }
 };
 </script>
 
