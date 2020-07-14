@@ -4,12 +4,15 @@
 
     <input class="add-search-input" type="text" v-model="newMessage" />
 
+    <input type="file" @change="onFileSelected" />
+    <button class="btn btn-primary file-btn" @click="onUpload">Telecharger image</button>
+
     <button class="btn btn-primary" @click="sendMessage">Envoyer Message</button>
     <div>
       <p v-if="submitting">Submitting...</p>
       <p v-if="loading">Loading...</p>
 
-      <ul>
+      <ul class="message-box">
         <li v-for="message in messages" :key="message.id">
           <h1>Utilisateur: {{message.id}}</h1>
           <p>Message:{{ message.text }}</p>
@@ -17,7 +20,7 @@
           <button class="btn btn-primary" @click="deleteMessage">Supprimer</button>
           <ul>
             <li v-for="message in messages" :key="message.id">
-              <p>{{message.comments}}</p>
+              <p>{{message.comment}}</p>
             </li>
           </ul>
 
@@ -37,10 +40,12 @@ export default {
   data() {
     return {
       messages: [],
+      comments: [],
       loading: false,
       submitting: false,
       newMessage: "",
-      newComment: ""
+      newComment: "",
+      selectedFile: ""
     };
   },
   methods: {
@@ -52,8 +57,20 @@ export default {
         const data = response.data;
 
         this.messages = data;
+
         this.loading = false;
         console.log(data);
+      });
+    },
+
+    onFileSelected(event) {
+      this.selectedFile = event.target.files[0];
+    },
+    onUpload() {
+      const fd = new FormData();
+      fd.append("image", this.selectedFile, this.selectedFile.name);
+      axios.post("http://localhost:3001/api/uploadFile", fd).then(res => {
+        console.log(res);
       });
     },
 
@@ -110,6 +127,7 @@ export default {
 }
 
 .users {
+  display: flex;
   width: auto;
   border: 1px solid black;
   display: flex;
@@ -117,6 +135,12 @@ export default {
   padding: 20px;
   background: #ffeee4;
   margin: 10px 20px;
+}
+
+.message-box {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
 }
 
 .add-search-input {
@@ -155,5 +179,10 @@ p {
   width: 160px;
   height: auto;
   margin: 5px auto;
+}
+
+.file-btn {
+  justify-content: left;
+  background-color: gray;
 }
 </style>

@@ -13,12 +13,6 @@
 </template>
 
 <script>
-import Receiver from "./components/Receiver";
-export default {
-  component: {
-    Receiver
-  }
-};
 </script>
 
 <style lang="scss">

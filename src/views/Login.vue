@@ -28,18 +28,22 @@ import axios from "axios";
 export default {
   data() {
     return {
-      name: ""
-      //password: ""
+      name: "",
+      password: ""
     };
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      if (this.password.length > 0) {
+      // if (this.password.length > 0)
+      {
         axios
           .post("http://localhost:3001/api/login", {
-            name: this.name
-            //password: this.password
+            headers: {
+              "Content-Type": "application / json"
+            },
+            name: this.name,
+            password: this.password
           })
           .then(response => {
             response;

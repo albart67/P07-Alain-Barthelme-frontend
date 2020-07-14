@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Bienvenue sur notre réseau social d'entreprise" />
+    <img alt="Vue logo" src="../assets/groupomania.png" />
+    <HelloWorld msg="Bienvenue sur notre réseau social de GROUPMANIA" />
   </div>
 </template>
 

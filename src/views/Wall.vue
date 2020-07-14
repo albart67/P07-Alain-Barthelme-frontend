@@ -1,9 +1,7 @@
 <template>
   <div class="message">
+    <h1>Le mur de messages</h1>
     <Message />
-
-    <h2>Messages posté</h2>
-    <button>Envoyer un message</button>
   </div>
 </template>
 
